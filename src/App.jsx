@@ -1,23 +1,18 @@
 import "./App.css"
 import Navbar from "./components/Navbar/Navbar"
 import Footer from "./components/Footer/Footer"
+import Main from "./components/Main/Main"
+import About from "./components/About/About"
+import { Route, Routes } from "react-router-dom"
 
 export default function App() {
     return (
         <>
             <Navbar />
-            <main>
-                <h1 className="title">
-                    ELÍAS FERREIRA
-                </h1>
-                <p className="main-text">
-                    I am a Uruguayan front end developer, I currently develop in React and am learning Scrum Master and Angular.
-                </p>
-                <p className="main-text">
-                    I aim to develop clean code and good practices, eager to make the improvements I know can 
-                    make to my code as soon as I finish a big portion of it and reworking my whole work when necessary.
-                </p>
-            </main>
+            <Routes>
+                <Route path="/" element={<Main />} />
+                <Route path="/about" element={<About />} />
+            </Routes>
             <Footer />
         </>
     )
