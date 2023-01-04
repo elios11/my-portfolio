@@ -1,0 +1,10 @@
+.about {
+    display: flex;
+    flex-direction: column;
+    margin-right: 3rem;
+    margin-left: 3rem;
+}
+
+p {
+    color: white;
+}
