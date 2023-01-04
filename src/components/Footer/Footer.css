@@ -1,0 +1,19 @@
+footer {
+    align-self: center;
+    justify-self: end;
+    margin-bottom: 3rem;
+}
+
+footer img {
+    width: 2rem;
+    height: 2rem;
+}
+
+footer img:hover {
+    opacity: 0.6;
+    cursor: pointer;
+}
+
+footer a:nth-child(1) {
+    margin-right: 4rem;
+}
