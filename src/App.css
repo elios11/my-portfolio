@@ -1,0 +1,56 @@
+/* Fonts */
+@font-face {
+    font-family: "Repo";
+    src: local("Repo"),
+        url("./fonts/Repo/Repo.otf") format("opentype");
+}
+
+/* Body */
+body {
+    margin: 0;
+}
+
+#root {
+    font-family: "Repo", sans-serif;
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    position: relative;
+}
+
+#root::after {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    inset: 0;
+    background: url("/background-img.jpg") no-repeat center center fixed;
+    background-size: cover;
+    filter: brightness(50%);
+    opacity: .95;
+}
+
+/* Home page content */
+main {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-left: 3rem;
+    margin-right: 3rem;
+}
+
+.title {
+    color: white;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    font-size: 2.4rem;
+}
+
+.main-text {
+    color: white;
+    font-size: 1rem;
+    line-height: 25px;
+    letter-spacing: 0.05em;
+}
