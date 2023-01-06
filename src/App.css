@@ -10,8 +10,9 @@ input, button {
 }
 
 /* Body */
-body {
+body, html {
     margin: 0;
+    height: 100%;
 }
 
 #root {
@@ -21,7 +22,7 @@ body {
     justify-content: space-between;
     margin: 0;
     padding: 0;
-    min-height: 100vh;
+    height: 100%;
     position: relative;
 }
 
@@ -36,9 +37,15 @@ body {
     opacity: .95;
 }
 
+@media (min-height: 600px) {
+    html {
+        font-size: 14px;
+    }
+}
+
 @media (min-height: 1000px) {
     html {
-        font-size: 22px;
+        font-size: 24px;
     }
 }
 
