@@ -12,6 +12,7 @@ main {
     font-weight: 500;
     letter-spacing: 0.05em;
     font-size: 2.4rem;
+    max-width: 50%;
 }
 
 .main-text {
