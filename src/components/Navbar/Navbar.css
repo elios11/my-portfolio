@@ -1,4 +1,5 @@
 nav {
+    font-family: "Open Sans", sans-serif;
     display: flex;
     align-self: start;
     justify-content: space-evenly;
