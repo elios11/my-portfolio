@@ -7,7 +7,7 @@ export default function Navbar() {
         <motion.nav
             initial={{ opacity: 0, x: "-100vh" }}
             animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.4 }}
+            transition={{ duration: 0.6, type: "spring" }}
         >
             <NavLink to="/">Home</NavLink>
             <NavLink to="/about">About</NavLink>
