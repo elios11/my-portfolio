@@ -7,13 +7,15 @@ import ContactForm from "./components/ContactForm/ContactForm"
 import Projects from "./components/Projects/Projects"
 import { Route, Routes, useLocation } from "react-router-dom"
 import { AnimatePresence } from "framer-motion"
+import background from "/background.jpg"
 
 export default function App() {
     let location = useLocation()
+
     return (
         <>
             <Navbar/>
-            <video autoPlay muted loop playsinline poster="videos/poster.png">
+            <video autoPlay muted loop playsinline poster={ background }>
                 <source src="/background-video.mp4" type="video/mp4"/>
                 <source src="/background-video.ogv" type="video/ogv"/>
                 <source src="/background-video.webm" type="video/webm"/>
