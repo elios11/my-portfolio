@@ -13,8 +13,10 @@ export default function App() {
     return (
         <>
             <Navbar/>
-            <video autoPlay muted loop playsInline>
+            <video autoPlay muted loop playsinline poster="videos/poster.png">
                 <source src="/background-video.mp4" type="video/mp4"/>
+                <source src="/background-video.ogv" type="video/ogv"/>
+                <source src="/background-video.webm" type="video/webm"/>
             </video>
             <AnimatePresence mode="wait">
                 <Routes location={ location } key={ location.key }>
