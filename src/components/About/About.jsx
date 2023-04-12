@@ -3,8 +3,17 @@ import "./About.css"
 import { containerVariants, paragraphVariants } from "../../utils/transitionVariants"
 import { useLocation } from "react-router-dom"
 
-export default function About({nextPath}) {
-    let location = useLocation()
+export default function About() {
+    useLocation()
+    
+    let exitAnimation = "toLeft"
+    if (window.location.pathname == "/") {
+        exitAnimation = "toRight"
+    }
+    if (window.location.pathname == "/about") {
+        exitAnimation = "toSamePage"
+    }
+
     return (
         <motion.div 
             className="about"
@@ -12,8 +21,7 @@ export default function About({nextPath}) {
             initial="start"
             animate="end"
             transition={{ when: "beforeChildren", staggerChildren: 0.5 }}
-            exit="toLeft"
-            key={ location.pathname }
+            exit={ exitAnimation }
         >
             <motion.p
                 variants={ paragraphVariants }
