@@ -8,7 +8,7 @@ export default function Main() {
             variants={ containerVariants }
             initial="start"
             animate="end"
-            transition={{ when: "beforeChildren", staggerChildren: 1 }}
+            transition={{ when: "beforeChildren", staggerChildren: 0.65 }}
             exit="toLeft"
         >
             <motion.h1 variants={ titleVariants } className="title">
