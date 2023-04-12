@@ -1,38 +1,93 @@
 import { useState } from "react"
 import "./Projects.css"
 import { motion } from "framer-motion"
+import { containerVariants, projectVariants } from "../../utils/transitionVariants"
+import projects from "./projects.json"
+import { useLocation } from "react-router-dom"
 
-export default function Projects(props) {
-    let [currentProject, setCurrentProject] = useState({})
+export default function Projects() {
+    useLocation()
 
-/*     let displayedProjects = props.projects.filter(project => {
+    let exitAnimation = "toRight"
+    if (window.location.pathname === "/projects") {
+        exitAnimation = "toSamePage"
+    }
+    if (window.location.pathname === "/contact") {
+        exitAnimation = "toLeft"
+    }
+
+    let [currentProject, setCurrentProject] = useState(projects[0])
+
+    function openProject(e) {
+        let newCurrentProject = projects.filter(project => {
+            return project.id == e.target.id
+        })
+        setCurrentProject(newCurrentProject[0])
+    }
+
+    let displayedProjects = projects.map(element => {
+        let isSelected = element.id === currentProject.id;
+
         return (
-            <motion.div>
+            <motion.img
+                className={`project--img projects-row-container-img ${isSelected ? "selected-project" : ""}`}
+                src={`/project-images/${ element.img }/`}
+                key={ element.id }
+                id={ element.id }
+                onClick={ openProject }
+            />
+        );
+    });
 
-            </motion.div>
-        )
-    }) */
     return (
-        <motion.div className="projects-container">
-            <div className="project">
-                <div className="project--img-container">
-                    <img className="project--img" src="/project-images/e-commerce.png"/>
-                </div>
+        <motion.div
+            className="projects-container"
+            variants={ containerVariants }
+            initial="start"
+            animate="end"
+            transition={{ when: "beforeChildren", staggerChildren: 2 }}
+            exit={ exitAnimation }
+        >
+            <div key={ currentProject.id } className="project">
+                <motion.img
+                    className="project--img"
+                    src={`/project-images/${ currentProject.img }`}
+                    variants={ projectVariants }
+                    initial="startFromLeft"
+                    transition={{ when: "beforeChildren", staggerChildren: 2 }}
+                    animate="end"
+                />
                 <div className="project--description">
-                    <p className="project--description--text">
-                        e-commerce project for the Jóvenes a Programar curriculum, made with JavaScript, CSS, HTML, Bootstrap, and Sass.
-                    </p>
-                    <button className="project--description--btn">
-                        <span className="project--description--btn-text">
-                            Go to project website
-                        </span>
-                    </button>
+                    <motion.p
+                        className="project--description--text"
+                        variants={ projectVariants }
+                        initial="startFromRight"
+                        animate="end"
+                    >
+                        { currentProject.description }
+                    </motion.p>
+                    <motion.a
+                        target="_blank"
+                        href={ currentProject.url }
+                        className="project--description--link"
+                        variants={ projectVariants }
+                        initial="startFromRight"
+                        animate="end"
+                        whileHover={{ backgroundColor: "rgb(0, 0, 0)", color: "rgb(255, 255, 255)" }}
+                    >
+                        Go to project website
+                    </motion.a>
                 </div>
             </div>
-                
-            <div>
 
-            </div>
+            <motion.div
+                className="projects-row-container"
+                variants={ projectVariants }
+                initial="startProjectsRow"
+                animate="endProjectsRow"
+            >
+                { displayedProjects }
+            </motion.div>
         </motion.div>
     )
 }
