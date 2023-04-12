@@ -1,8 +1,8 @@
 .about {
     display: flex;
     flex-direction: column;
-    margin-right: 10rem;
-    margin-left: 10rem;
+    margin-right: 5vw;
+    margin-left: 5vw;
     line-height: 2rem;
     text-align: center;
     overflow: hidden;
