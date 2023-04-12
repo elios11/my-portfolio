@@ -31,21 +31,41 @@ body, html {
     position: relative;
 }
 
-@media (min-width: 1080px) {
+/* Media heights */
+@media (min-height: 650px) {
     html {
-        font-size: 20px;
+        font-size: 12px;
+    }
+}
+
+@media (min-height: 850px) {
+    html {
+        font-size: 16px;
+    }
+}
+
+@media (min-height: 1000px) {
+    html {
+        font-size: 25px;
+    }
+}
+
+/* Media widths */
+@media (min-width: 1200px) {
+    html {
+        font-size: 18px;
     }
 }
 
 @media (min-width: 1400px) {
     html {
-        font-size: 24px;
+        font-size: 20px;
     }
 }
 
 @media (min-width: 1800px) {
     html {
-        font-size: 32px;
+        font-size: 28px;
     }
 }
 
@@ -57,6 +77,12 @@ body, html {
 
 @media (min-width: 3000px) {
     html {
-        font-size: 42px;
+        font-size: 45px;
+    }
+}
+
+@media (min-width: 3200px) {
+    html {
+        font-size: 50px;
     }
 }
