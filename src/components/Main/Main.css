@@ -19,6 +19,6 @@ main {
 .main-text {
     color: white;
     font-size: 1rem;
-    line-height: 25px;
+    line-height: 1.5rem;
     letter-spacing: 0.05em;
 }
