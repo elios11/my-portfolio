@@ -19,7 +19,6 @@ export default function ContactForm() {
             variants={ containerVariants }
             initial={{ scale: 0, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
-            transition={{ when: "beforeChildren", staggerChildren: 0.5, type: "spring", stiffness: 80 }}
             exit={ exitAnimation }
         >
             <h1 className="form-title">Let's work together!</h1>

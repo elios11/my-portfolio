@@ -45,7 +45,6 @@ export default function Projects() {
             variants={ containerVariants }
             initial="start"
             animate="end"
-            transition={{ when: "beforeChildren", staggerChildren: 2 }}
             exit={ exitAnimation }
         >
             <div key={ currentProject.id } className="project">
@@ -54,7 +53,6 @@ export default function Projects() {
                     src={`/project-images/${ currentProject.img }`}
                     variants={ projectVariants }
                     initial="startFromLeft"
-                    transition={{ when: "beforeChildren", staggerChildren: 2 }}
                     animate="end"
                 />
                 <div className="project--description">
