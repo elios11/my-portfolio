@@ -2,28 +2,28 @@
     {
         "name": "eCommerce",
         "description": "e-commerce project for the Jóvenes a Programar curriculum, made with JavaScript, CSS, HTML, Bootstrap, and Sass.",
-        "img": "e-commerce.png",
+        "img": "e-commerce.jpg",
         "url": "https://elios11.github.io/e-commerce_jap/",
         "id": 1
     },
     {
         "name": "Tenzi",
         "description": "Tenzi style game made with React and deployed in Netlify. To win the game try to get the same number in all the dice, you can click any of them to keep it in the same value between rolls.",
-        "img": "tenzi-game.png",
+        "img": "tenzi-game.jpg",
         "url": "https://tenzi-react-game-app.netlify.app/",
         "id": 2
     },
     {
         "name": "airbnb-clone",
         "description": "Airbnb front-page clone, it was one of my first projects in React. I like it because it was my first introduction to Figma, which I use to make my designs to this day.",
-        "img": "airbnb-clone.png",
+        "img": "airbnb-clone.jpg",
         "url": "https://airbnb-clone-react-project.netlify.app/",
         "id": 3
     },
     {
         "name": "rps-game",
         "description": "Rock-Paper-Scissors game made with JavaScript, CSS and HTML.",
-        "img": "rps-game.png",
+        "img": "rps-game.jpg",
         "url": "https://elios11.github.io/rockPaperScissors/",
         "id": 4
     }
