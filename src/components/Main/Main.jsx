@@ -1,28 +1,46 @@
-import "./Main.css"
-import { motion } from "framer-motion"
-import { titleVariants, paragraphVariants, containerVariants } from "../../utils/transitionVariants"
+import "./Main.css";
+import { motion } from "framer-motion";
+import {
+    titleVariants,
+    paragraphVariants,
+    containerVariants
+} from "../../utils/transitionVariants";
+import { useEffect, useState } from "react";
+import fetchData from "../../api/fetchData";
+import Loader from "../Loader/Loader";
 
 export default function Main() {
-    return (
+    const [info, setInfo] = useState([]);
+
+    /* Fetches homepage info and updates state with it */
+    useEffect(() => {
+        fetchData("info")
+            .then((data) => {
+                const splittedInfo = data[0].home.split("\n");
+                setInfo(splittedInfo);
+            })
+            .catch((e) => console.error(e));
+    }, []);
+
+    return !info ? (
+        <Loader />
+    ) : (
         <motion.main
-            variants={ containerVariants }
+            variants={containerVariants}
             initial="start"
             animate="end"
             transition={{ when: "beforeChildren", staggerChildren: 0.65 }}
             exit="toLeft"
         >
-            <motion.h1 variants={ titleVariants } className="title">
+            <motion.h1 variants={titleVariants} className="title">
                 ELÍAS FERREIRA
             </motion.h1>
-            <motion.p variants={ paragraphVariants } className="main-text">
-                I am a Uruguayan front end developer, I currently develop in React and have the fundamentals
-                of working with agile methodologies.
-                I'm mostly self-taught and I always love learning new technologies that could fit any of my projects.
+            <motion.p variants={paragraphVariants} className="main-text">
+                {info[0]}
             </motion.p>
-            <motion.p variants={ paragraphVariants } className="main-text">
-                I aim to develop clean code and good practices, eager to make the improvements I know can
-                make to my code as soon as I finish a big portion of it and reworking my whole work when necessary.
+            <motion.p variants={paragraphVariants} className="main-text">
+                {info[1]}
             </motion.p>
         </motion.main>
-    )
+    );
 }

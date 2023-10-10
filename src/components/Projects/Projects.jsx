@@ -1,77 +1,101 @@
-import { useState } from "react"
-import "./Projects.css"
-import { motion } from "framer-motion"
-import { containerVariants, projectVariants } from "../../utils/transitionVariants"
-import projects from "./projects.json"
-import { useLocation } from "react-router-dom"
+import { useEffect, useState } from "react";
+import "./Projects.css";
+import { motion } from "framer-motion";
+import {
+    containerVariants,
+    projectVariants
+} from "../../utils/transitionVariants";
+import { useLocation } from "react-router-dom";
+import fetchData from "../../api/fetchData";
+import Loader from "../Loader/Loader";
 
 export default function Projects() {
-    useLocation()
+    useLocation();
 
-    let exitAnimation = "toRight"
+    let exitAnimation = "toRight";
     if (window.location.pathname === "/projects") {
-        exitAnimation = "toSamePage"
+        exitAnimation = "toSamePage";
     }
     if (window.location.pathname === "/contact") {
-        exitAnimation = "toLeft"
+        exitAnimation = "toLeft";
     }
 
-    let [currentProject, setCurrentProject] = useState(projects[0])
+    const [projectsInfo, setProjectsInfo] = useState(null);
+    const [currentProject, setCurrentProject] = useState(null);
+
+    /* Fetches about info and updates state with it */
+    useEffect(() => {
+        fetchData("projects")
+            .then((data) => {
+                setProjectsInfo(data);
+                setCurrentProject(data[0]);
+            })
+            .catch((e) => console.error(e));
+    }, []);
 
     function openProject(e) {
-        let newCurrentProject = projects.filter(project => {
-            return project.id == e.target.id
-        })
-        setCurrentProject(newCurrentProject[0])
+        let newCurrentProject = projectsInfo.filter((project) => {
+            return project.id == e.target.id;
+        });
+        setCurrentProject(newCurrentProject[0]);
     }
 
-    let displayedProjects = projects.map(element => {
-        let isSelected = element.id === currentProject.id;
+    let displayedProjects = [];
+    if (projectsInfo) {
+        displayedProjects = projectsInfo.map((element) => {
+            let isSelected = element.id === currentProject.id;
+            return (
+                <motion.img
+                    className={`project--img projects-row-container-img ${
+                        isSelected ? "selected-project" : ""
+                    }`}
+                    src={`/project-images/${element.img}/`}
+                    key={element.id}
+                    id={element.id}
+                    onClick={openProject}
+                />
+            );
+        });
+    }
 
-        return (
-            <motion.img
-                className={`project--img projects-row-container-img ${isSelected ? "selected-project" : ""}`}
-                src={`/project-images/${ element.img }/`}
-                key={ element.id }
-                id={ element.id }
-                onClick={ openProject }
-            />
-        );
-    });
-
-    return (
+    return !currentProject ? (
+        <Loader />
+    ) : (
         <motion.div
             className="projects-container"
-            variants={ containerVariants }
+            variants={containerVariants}
             initial="start"
             animate="end"
-            exit={ exitAnimation }
+            exit={exitAnimation}
         >
-            <div key={ currentProject.id } className="project">
+            <div key={currentProject._id} className="project">
                 <motion.img
                     className="project--img"
-                    src={`/project-images/${ currentProject.img }`}
-                    variants={ projectVariants }
+                    src={`/project-images/${currentProject.img}`}
+                    variants={projectVariants}
                     initial="startFromLeft"
                     animate="end"
                 />
                 <div className="project--description">
                     <motion.p
                         className="project--description--text"
-                        variants={ projectVariants }
+                        variants={projectVariants}
                         initial="startFromRight"
                         animate="end"
                     >
-                        { currentProject.description }
+                        {currentProject.description}
                     </motion.p>
                     <motion.a
                         target="_blank"
-                        href={ currentProject.url }
+                        href={currentProject.url}
                         className="project--description--link"
-                        variants={ projectVariants }
+                        variants={projectVariants}
                         initial="startFromRight"
                         animate="end"
-                        whileHover={{ backgroundColor: "rgb(0, 0, 0)", color: "rgb(255, 255, 255)" }}
+                        whileHover={{
+                            backgroundColor: "rgb(0, 0, 0)",
+                            color: "rgb(255, 255, 255)"
+                        }}
                     >
                         Go to project website
                     </motion.a>
@@ -80,12 +104,12 @@ export default function Projects() {
 
             <motion.div
                 className="projects-row-container"
-                variants={ projectVariants }
+                variants={projectVariants}
                 initial="startProjectsRow"
                 animate="endProjectsRow"
             >
-                { displayedProjects }
+                {displayedProjects}
             </motion.div>
         </motion.div>
-    )
+    );
 }
