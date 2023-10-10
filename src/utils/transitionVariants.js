@@ -22,7 +22,7 @@ export const containerVariants = {
             duration: 0.45
         }
     }
-}
+};
 
 export const titleVariants = {
     start: {
@@ -36,11 +36,11 @@ export const titleVariants = {
             stiffness: 70
         }
     }
-}
+};
 
 export const paragraphVariants = {
     start: {
-        opacity: 0,
+        opacity: 0
     },
     end: {
         opacity: 0.8,
@@ -49,7 +49,7 @@ export const paragraphVariants = {
             type: "spring"
         }
     }
-}
+};
 
 export const buttonVariants = {
     hover: {
@@ -61,7 +61,7 @@ export const buttonVariants = {
             duration: 0.6
         }
     }
-}
+};
 
 export const projectVariants = {
     startFromLeft: {
@@ -89,7 +89,8 @@ export const projectVariants = {
         scale: 1,
         transition: {
             type: "tween",
-            duration: 0.5
+            duration: 0.4,
+            stiffness: 60
         }
     }
-}
+};
