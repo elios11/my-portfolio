@@ -25,7 +25,7 @@ export default function About() {
     useEffect(() => {
         fetchData("about")
             .then((data) => {
-                const splittedInfo = data[0].about.split("\n");
+                const splittedInfo = data[0]?.about.split("\n");
                 setAboutInfo(splittedInfo);
             })
             .catch((e) => console.error(e));

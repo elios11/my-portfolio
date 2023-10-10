@@ -10,13 +10,13 @@ import fetchData from "../../api/fetchData";
 import Loader from "../Loader/Loader";
 
 export default function Main() {
-    const [info, setInfo] = useState([]);
+    const [info, setInfo] = useState(null);
 
     /* Fetches homepage info and updates state with it */
     useEffect(() => {
         fetchData("info")
             .then((data) => {
-                const splittedInfo = data[0].home.split("\n");
+                const splittedInfo = data[0]?.home.split("\n");
                 setInfo(splittedInfo);
             })
             .catch((e) => console.error(e));

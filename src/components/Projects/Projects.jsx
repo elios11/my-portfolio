@@ -41,7 +41,9 @@ export default function Projects() {
     }
 
     let displayedProjects = [];
-    if (projectsInfo) {
+
+    if (projectsInfo !== null && !projectsInfo.error) {
+        console.log(projectsInfo);
         displayedProjects = projectsInfo.map((element) => {
             let isSelected = element.id === currentProject.id;
             return (
