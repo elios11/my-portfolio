@@ -1,16 +1,18 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect } from "react";
 import "./Projects.css";
+import Loader from "@components/Loader/Loader";
 import { motion } from "framer-motion";
-import {
-    containerVariants,
-    projectVariants
-} from "../../utils/transitionVariants";
+import { containerVariants, projectVariants } from "@utils/transitionVariants";
 import { useLocation } from "react-router-dom";
-import fetchData from "../../api/fetchData";
-import Loader from "../Loader/Loader";
+import DataContext from "@context/DataContext";
+import FetchDataToContext from "@utils/FetchDataToContext";
 
 export default function Projects() {
     useLocation();
+    const { projectsInfo, currentProject, setCurrentProject } =
+        useContext(DataContext);
+
+    const { loading } = FetchDataToContext;
 
     let exitAnimation = "toRight";
     if (window.location.pathname === "/projects") {
@@ -19,19 +21,6 @@ export default function Projects() {
     if (window.location.pathname === "/contact") {
         exitAnimation = "toLeft";
     }
-
-    const [projectsInfo, setProjectsInfo] = useState(null);
-    const [currentProject, setCurrentProject] = useState(null);
-
-    /* Fetches about info and updates state with it */
-    useEffect(() => {
-        fetchData("projects")
-            .then((data) => {
-                setProjectsInfo(data);
-                setCurrentProject(data[0]);
-            })
-            .catch((e) => console.error(e));
-    }, []);
 
     function openProject(e) {
         let newCurrentProject = projectsInfo.filter((project) => {
@@ -43,7 +32,6 @@ export default function Projects() {
     let displayedProjects = [];
 
     if (projectsInfo !== null && !projectsInfo.error) {
-        console.log(projectsInfo);
         displayedProjects = projectsInfo.map((element) => {
             let isSelected = element.id === currentProject.id;
             return (
@@ -60,7 +48,7 @@ export default function Projects() {
         });
     }
 
-    return !currentProject ? (
+    return loading || !projectsInfo ? (
         <Loader />
     ) : (
         <motion.div

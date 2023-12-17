@@ -1,28 +1,20 @@
+import { useContext } from "react";
 import "./Main.css";
 import { motion } from "framer-motion";
+import Loader from "@components/Loader/Loader";
 import {
     titleVariants,
     paragraphVariants,
     containerVariants
-} from "../../utils/transitionVariants";
-import { useEffect, useState } from "react";
-import fetchData from "../../api/fetchData";
-import Loader from "../Loader/Loader";
+} from "@utils/transitionVariants";
+import DataContext from "@context/DataContext";
+import FetchDataToContext from "@utils/FetchDataToContext";
 
 export default function Main() {
-    const [info, setInfo] = useState(null);
+    const { mainInfo } = useContext(DataContext);
+    const { loading } = FetchDataToContext();
 
-    /* Fetches homepage info and updates state with it */
-    useEffect(() => {
-        fetchData("info")
-            .then((data) => {
-                const splittedInfo = data[0]?.home.split("\n");
-                setInfo(splittedInfo);
-            })
-            .catch((e) => console.error(e));
-    }, []);
-
-    return !info ? (
+    return loading || !mainInfo ? (
         <Loader />
     ) : (
         <motion.main
@@ -36,10 +28,10 @@ export default function Main() {
                 ELÍAS FERREIRA
             </motion.h1>
             <motion.p variants={paragraphVariants} className="main-text">
-                {info[0]}
+                {mainInfo[0]}
             </motion.p>
             <motion.p variants={paragraphVariants} className="main-text">
-                {info[1]}
+                {mainInfo[1]}
             </motion.p>
         </motion.main>
     );

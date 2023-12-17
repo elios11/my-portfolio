@@ -1,4 +1,5 @@
 import "./App.css";
+import background from "/background.jpg";
 import Navbar from "./components/Navbar/Navbar";
 import Footer from "./components/Footer/Footer";
 import Main from "./components/Main/Main";
@@ -7,7 +8,7 @@ import ContactForm from "./components/ContactForm/ContactForm";
 import Projects from "./components/Projects/Projects";
 import { Route, Routes, useLocation } from "react-router-dom";
 import { AnimatePresence } from "framer-motion";
-import background from "/background.jpg";
+import { DataContextProvider } from "./context/DataContext";
 
 export default function App() {
     let location = useLocation();
@@ -20,14 +21,17 @@ export default function App() {
                 <source src="/background-video.ogv" type="video/ogv" />
                 <source src="/background-video.webm" type="video/webm" />
             </video>
-            <AnimatePresence mode="wait">
-                <Routes location={location} key={location.key}>
-                    <Route path="/" element={<Main />} />
-                    <Route path="/about" element={<About />} />
-                    <Route path="/projects" element={<Projects />} />
-                    <Route path="/contact" element={<ContactForm />} />
-                </Routes>
-            </AnimatePresence>
+
+            <DataContextProvider>
+                <AnimatePresence mode="wait">
+                    <Routes location={location} key={location.key}>
+                        <Route path="/" element={<Main />} />
+                        <Route path="/about" element={<About />} />
+                        <Route path="/projects" element={<Projects />} />
+                        <Route path="/contact" element={<ContactForm />} />
+                    </Routes>
+                </AnimatePresence>
+            </DataContextProvider>
             <Footer />
         </>
     );

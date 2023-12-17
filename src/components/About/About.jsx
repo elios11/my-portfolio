@@ -1,16 +1,19 @@
+import { useContext } from "react";
 import { motion } from "framer-motion";
 import "./About.css";
+import Loader from "@components/Loader/Loader";
 import {
     containerVariants,
     paragraphVariants
-} from "../../utils/transitionVariants";
+} from "@utils/transitionVariants";
 import { useLocation } from "react-router-dom";
-import { useEffect, useState } from "react";
-import fetchData from "../../api/fetchData";
-import Loader from "../Loader/Loader";
+import DataContext from "@context/DataContext";
+import FetchDataToContext from "@utils/FetchDataToContext";
 
 export default function About() {
     useLocation();
+    const { aboutInfo } = useContext(DataContext);
+    const { loading } = FetchDataToContext();
 
     let exitAnimation = "toLeft";
     if (window.location.pathname == "/") {
@@ -20,18 +23,7 @@ export default function About() {
         exitAnimation = "toSamePage";
     }
 
-    const [aboutInfo, setAboutInfo] = useState(null);
-    /* Fetches about info and updates state with it */
-    useEffect(() => {
-        fetchData("about")
-            .then((data) => {
-                const splittedInfo = data[0]?.about.split("\n");
-                setAboutInfo(splittedInfo);
-            })
-            .catch((e) => console.error(e));
-    }, []);
-
-    return !aboutInfo ? (
+    return loading || !aboutInfo ? (
         <Loader />
     ) : (
         <motion.div
