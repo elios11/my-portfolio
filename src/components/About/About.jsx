@@ -34,7 +34,9 @@ export default function About() {
             transition={{ when: "beforeChildren", staggerChildren: 0.5 }}
             exit={exitAnimation}
         >
-            <motion.p variants={paragraphVariants}>{aboutInfo[0]}</motion.p>
+            <motion.p className="first-paragraph" variants={paragraphVariants}>
+                {aboutInfo[0]}
+            </motion.p>
             <motion.p variants={paragraphVariants}>{aboutInfo[1]}</motion.p>
             <motion.p variants={paragraphVariants}>{aboutInfo[2]}</motion.p>
         </motion.div>

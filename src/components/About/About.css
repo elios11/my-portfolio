@@ -1,13 +1,63 @@
 .about {
     display: flex;
     flex-direction: column;
-    margin-right: 5vw;
-    margin-left: 5vw;
+    align-self: center;
     line-height: 2rem;
-    text-align: center;
-    overflow: hidden;
+    max-width: 90ch;
+    gap: 1rem;
+    margin: 2rem 2.4rem;
 }
 
-p {
-    color: white;
+.first-paragraph {
+    display: none;
+}
+
+@media (min-width: 600px) {
+    .about {
+        max-width: 50ch;
+    }
+
+    .first-paragraph {
+        display: block;
+    }
+}
+
+/* Tablet design */
+@media (min-width: 700px) {
+    .about {
+        max-width: 55ch;
+        font-size: 1.2rem;
+        line-height: 2.2rem;
+        gap: 1.5rem;
+    }
+}
+
+@media (min-width: 850px) {
+    .about {
+        max-width: 65ch;
+        font-size: 1.3rem;
+    }
+}
+
+/* Desktop design */
+@media (min-width: 1200px) {
+    .about {
+        max-width: 70ch;
+        gap: 2.5rem;
+        font-size: 1.4rem;
+    }
+}
+
+@media (min-width: 1200px) and (max-height: 800px) {
+    .about {
+        max-width: 90ch;
+        gap: 1.8rem;
+        font-size: 1rem;
+    }
+}
+
+@media (min-width: 1600px) {
+    .about {
+        max-width: 100ch;
+    }
 }

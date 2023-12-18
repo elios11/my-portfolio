@@ -12,7 +12,7 @@ export default function Projects() {
     const { projectsInfo, currentProject, setCurrentProject } =
         useContext(DataContext);
 
-    const { loading } = FetchDataToContext;
+    const { loading } = FetchDataToContext();
 
     let exitAnimation = "toRight";
     if (window.location.pathname === "/projects") {

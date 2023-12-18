@@ -27,3 +27,22 @@ nav a:hover {
 .active:hover {
     color: white;
 }
+
+/* Tablet design */
+@media (min-width: 700px) {
+    nav a {
+        font-size: 1rem;
+    }
+}
+
+@media (min-width: 1200px) {
+    nav a {
+        font-size: 0.9rem;
+    }
+}
+
+@media (min-width: 1200px) and (max-height: 800px) {
+    nav a {
+        font-size: 0.7rem;
+    }
+}
