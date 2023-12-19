@@ -1,4 +1,4 @@
-import { useContext, useEffect } from "react";
+import { useContext } from "react";
 import "./Projects.css";
 import Loader from "@components/Loader/Loader";
 import { motion } from "framer-motion";
@@ -33,7 +33,11 @@ export default function Projects() {
 
     if (projectsInfo !== null && !projectsInfo.error) {
         displayedProjects = projectsInfo.map((element) => {
+            if (!element.show) {
+                return;
+            }
             let isSelected = element.id === currentProject.id;
+
             return (
                 <motion.img
                     className={`project--img projects-row-container-img ${
