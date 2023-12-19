@@ -41,7 +41,7 @@ nav a:hover {
     }
 }
 
-@media (min-width: 1200px) and (max-height: 800px) {
+@media (min-width: 700px) and (max-height: 800px) {
     nav a {
         font-size: 0.7rem;
     }
